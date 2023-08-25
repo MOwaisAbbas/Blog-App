@@ -1,11 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blogs | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../CSS/index.css">
+
 </head>
+
 <body>
-    
+    <div class="main">
+
+
+        <!-- Loader -->
+        <div id="loader-div">
+            <span class="loader">Loading</span>
+        </div>
+
+
+
+        <!-- navbar No#1 -->
+        <div class="container-flude">
+            <div class="nav m-0 row d-flex  align-items-center justify-content-center">
+                <div
+                    class="m-w p-0 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex align-items-center justify-content-between">
+                    <h1 class="m-0 ps-4">Personal Blogging app</h1>
+
+                    <!-- ----------------/dropdown/-------------------- -->
+                    <div class="btn-group drop">
+                        <button class="btn shadow-none" type="button" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
+                                class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu p-0">
+                            <li class="p-0"> <a class="p-2" href="">Inzamam Malik</a></li>
+                            <li class="p-0"> <a class="p-2" href="">Logout</a></li>
+                        </ul>
+                        <!-- ------------------------------------- -->
+                    </div>
+                    <div class="nav-item d-flex align-items-center justify-content-arround">
+                        <a class="p-2" href="">Inzamam Malik</a>
+                        <a class="p-2" href="">Logout</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- navbar No#2 -->
+
+        <div class="container-flude">
+            <div class="nav-2 m-0 row d-flex  align-items-center justify-content-center">
+                <div
+                    class="m-w p-0 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex align-items-center justify-content-between">
+                    <h1 class="m-0 ps-4">Dashboard</h1>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Dashboard -->
+        <div class="container-flude">
+            <div class=" m-0 my-4  row d-flex  align-items-center justify-content-center">
+                <div
+                    class="m-w blog-input p-0 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex flex-column align-items-center justify-content-evenly">
+                    <input type="text" class="form-control" placeholder="Add title">
+                    <textarea draggable="false" class="form-control" aria-label="With textarea" placeholder="Whats in your mind!"></textarea>
+                    <button type="button" class="btn">Publish Blog</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- All blogs are added in this div -->
+        <div class="container-flude">
+            <div class=" m-0 row d-flex  align-items-center justify-content-center">
+                <div
+                    class="p-0 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex flex-column align-items-center justify-content-between content-1">
+                    <!-- Add blog here -->
+
+                    <div class="card col-12 ps-2 mb-4">
+                        <div class="card-body">
+                            <div class="d-flex ">
+                                <img id="blogImage" src="../Images/profile.jpg" alt="User Profile">
+                                <div class="ms-3 d-flex flex-column justify-content-center">
+                                    <h5 class="card-title fs-4 col-8 col-sm-10">Lorem Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Dolor.</h5>
+                                    <div class="d-flex align-items-center">
+
+                                        <h6 class="card-subtitle p-0 m-0 text-body-secondary">Inzamam Malik</h6> <span
+                                            id="dateInBlog"> - August 16th, 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text mt-3">The advancement of
+                                technology has brought about profound changes in various aspects of our lives. From
+                                communication to transportation, from healthcare to entertainment, every sphere has
+                                witnessed the influence of technological innovations. One of the most significant
+                                breakthroughs in recent times is the development of artificial intelligence.
+
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ipsam dicta aliquid
+                                sint culpa pariatur veniam porro, at, quod soluta eum! Delectus sed explicabo veritatis
+                                nisi earum alias. Delectus ipsum assumenda atque, nostrum commodi quidem sit, ab modi
+                                saepe debitis sunt similique minima! Quisquam facilis suscipit sequi quo, error odit!
+
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos exercitationem
+                                distinctio perferendis eveniet mollitia nulla, vel quod. Quis, mollitia quia animi
+                                voluptates voluptatem, vel saepe autem ratione officia repudiandae molestiae inventore
+                                deleniti repellendus? Eveniet animi rerum sed excepturi doloremque quod, aspernatur
+                                temporibus labore? Rerum, dolorum fugiat? Aut ducimus rerum itaque!
+
+                                In conclusion, artificial intelligence has revolutionized the way we interact with
+                                technology and holds immense potential for shaping the future. Its applications span
+                                across various sectors, from healthcare to finance to communication. However, the
+                                ethical implications and potential societal challenges cannot be ignored. Striking a
+                                balance between technological advancement and ethical considerations will be crucial as
+                                we continue to integrate AI into our lives.</p>
+                            <a href="#" class="card-link">Delete</a>
+                            <a href="#" class="card-link">Edit</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="../javaScript/app.js"></script>
+
 </body>
+
 </html>

@@ -1,6 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 .main {
     background-color: #F8F9FA;
-    ;
+    
 }
 
 #loader-div {
@@ -96,7 +102,7 @@
 }
 
 .nav-item {
-    width: 150px;
+    width: 200px;
 }
 
 .content-1 {
@@ -106,6 +112,13 @@
 
 .card {
     border: 1px solid #DEE2E6;
+    box-shadow: #0000003d 0px 3px 8px;
+    max-width: 850px;
+
+}
+
+.m-w {
+    max-width: 850px;
 
 }
 
@@ -117,14 +130,114 @@
     display: none;
 }
 
-.drop a {
+.dropdown-menu a {
+    display: block;
     color: #000;
 }
-.drop button:focus{
-    border: none ;
+
+.dropdown-menu li:hover {
+    background-color: #d8d8d8;
+    display: block;
+    color: #000;
 }
 
+.drop button:focus {
+    border: none;
+}
 
+.login-div,
+.signup-div {
+    height: calc(100vh - 160px);
+}
+
+.login-input-container,
+.signup-input-container {
+    border: 1px solid #DEE2E6;
+    box-shadow: #0000003d 0px 3px 8px;
+    height: 30vh;
+    max-width: 400px;
+    border-radius: 6px;
+}
+
+.signup-input-container {
+    height: 40vh;
+}
+
+.inputt {
+    width: 95%;
+}
+
+.inputt:focus {
+    outline-color: #7849f849;
+    border-color: #7849f849;
+    box-shadow: 0 0 0 0.25rem #7849f849;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    background-color: #7749F8;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #7849f8;
+    color: #fff;
+
+}
+
+.btn:active {
+    opacity: 0.9 !important;
+    background-color: #7849f8 !important;
+    color: #fff !important;
+
+}
+
+.btn:focus {
+    background-color: #7849f8;
+    color: #fff;
+
+}
+
+#blogImage {
+    border-radius: 8px;
+    border: 1px solid;
+    width: 100px;
+    height: 100px;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+.card-link {
+    color: #7749F8;
+    text-decoration: none;
+}
+
+.blog-input {
+    box-shadow: #0000003d 0px 3px 8px;
+    height: 30vh;
+
+}
+
+.blog-input input,
+.blog-input textarea {
+    width: 90%;
+}
+.blog-input input:focus,
+.blog-input textarea:focus {
+    outline-color: #7849f849;
+    border-color: #7849f849;
+    box-shadow: 0 0 0 0.25rem #7849f849;
+}
+
+.blog-input textarea {
+    height: 114px;
+    resize: none;
+}
 
 @media (max-width : 575px) {
     .drop {
@@ -135,7 +248,19 @@
         display: none !important;
     }
 
-    .card {
+    .card ,.blog-input{
         width: 95%;
     }
+
+    .login-input-container,
+    .signup-input-container {
+        width: 85%;
+    }
+    .card-title{
+        width: 100%;
+    }
+    .card-subtitle{
+        
+    }
+    
 }
