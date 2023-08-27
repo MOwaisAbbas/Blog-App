@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogs | Home</title>
+    <title>Signup | Blogs</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="icon" href="../Images/bootstrap-icon.jpeg">
 
 </head>
 
@@ -68,15 +69,15 @@
         <!-- All blogs are added in this div -->
         <div class="container-flude">
             <div class="signup-div m-0 row d-flex  align-items-center justify-content-center">
-                <div
+                <form
                     class="signup-input-container  d-flex flex-column   align-items-center justify-content-evenly col-xxl-3 col-xl-3 col-lg-4 col-md-5 col-sm-6">
-                    <input type="text" class="inputt form-control" placeholder="First Name">
-                    <input type="text" class="inputt form-control" placeholder="Last Name">
+                    <input type="text" class="inputt form-control" placeholder="First Name" minlength="3" maxlength="20">
+                    <input type="text" class="inputt form-control" placeholder="Last Name" minlength="1" maxlength="20">
                     <input type="email" class="inputt form-control" placeholder="Email">
                     <input type="password" class="inputt form-control" placeholder="Password">
                     <input type="password" class="inputt form-control" placeholder="Conform Password">
-                    <button type="button" class="btn">Signup</button>
-                </div>
+                    <button type="submit" class="btn">Signup</button>
+                </form>
             </div>
 
         </div>

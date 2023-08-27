@@ -1,11 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile | Blogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="icon" href="../Images/bootstrap-icon.jpeg">
+
 </head>
+
 <body>
-    
+    <div class="main">
+
+
+        <!-- Loader -->
+        <div id="loader-div">
+            <span class="loader">Loading</span>
+        </div>
+
+
+
+        <!-- navbar No#1 -->
+        <div class="container-flude">
+            <div class="nav m-0 row d-flex  align-items-center justify-content-center">
+                <div
+                    class="m-w p-0 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex align-items-center justify-content-between">
+                    <h1 class="m-0 ps-4">Personal Blogging app</h1>
+
+                    <!-- ----------------/dropdown/-------------------- -->
+                    <div class="btn-group drop">
+                        <button class="btn shadow-none" type="button" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
+                                class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu p-0">
+                            <li class="p-0"> <a class="p-2" href="../index.html">Home</a></li>
+                            <li class="p-0"> <a class="p-2" href="home.html">Dashboard</a></li>
+                        </ul>
+                        <!-- ------------------------------------- -->
+                    </div>
+                    <div class="nav-item d-flex align-items-center justify-content-arround">
+                        <a class="p-2" href="../index.html">Home</a>
+                        <a class="p-2" href="home.html">Dashboard</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- navbar No#2 -->
+
+        <div class="container-flude">
+            <div class="nav-2 m-0 row d-flex  align-items-center justify-content-center">
+                <div
+                    class="m-w p-0 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex align-items-center justify-content-between">
+                    <h1 class="m-0 ps-4">Profile</h1>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- All blogs are added in this div -->
+        <div class="container-flude">
+            <div class="profile-main-div m-0 row d-flex  align-items-center justify-content-center">
+                <form method="post"
+                    class="m-w p-5 col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-10 d-flex flex-column align-items-start justify-content-between content-1">
+                    <div>
+
+                        <img src="../Images/profile.jpg" alt="Profile picture">
+                        <input id="fileSelect" type="file" >
+                        <label for="fileSelect">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                            class="bi bi-pen" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                            
+                        </svg>
+                    </label>
+                    </div>
+                    <label class="p-0 p-0">
+
+                        <input type="text" class="inputt  form-control" minlength="3" maxlength="20"
+                            value="Inzamam Malik" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-pen" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+
+                        </svg>
+                    </label>
+                    <h2>Password</h2>
+                    <input minlength="3" maxlength="20" type="password" class="inputt form-control"
+                        placeholder="Old Password">
+                    <input minlength="3" maxlength="20" type="password" class="inputt form-control"
+                        placeholder="New Password">
+                    <input minlength="3" maxlength="20" type="password" class="inputt form-control"
+                        placeholder="Conform Password">
+
+                    <button type="submit" class="btn">Update Profile</button>
+
+                </form>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="../javaScript/app.js"></script>
+
 </body>
+
 </html>
