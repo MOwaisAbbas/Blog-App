@@ -173,6 +173,12 @@
     border-color: #7849f849;
     box-shadow: 0 0 0 0.25rem #7849f849;
 }
+.swal2-confirm{
+    background-color: #7749F8;
+}
+.swal2-confirm{
+    background-color: #7749F8 !important;
+}
 
 .btn {
     border: none;
@@ -245,19 +251,19 @@
     height: calc(100vh - 160px);
 }
 
-.profile-main-div form {
+.profile-main-div div {
     box-shadow: #0000003d 0px 3px 8px;
     border-radius: 6px;
     height: 80vh;
 }
 
-.profile-main-div form div {
+.profile-main-div div div {
     max-width: 350px;
     max-height: 350px;
     position: relative;
 }
 
-.profile-main-div form div label {
+.profile-main-div div div label {
 cursor: pointer;
     position: absolute;
     right: 16px;
