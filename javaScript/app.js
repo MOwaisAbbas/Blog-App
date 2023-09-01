@@ -12,6 +12,7 @@ const inputs = document.querySelectorAll("input");
 let editBlogID;
 const updateBlog = async (id) => {
     loader.style.display = "grid"
+    window.scrollTo(0,0)
 
     console.log(id)
     editBlogID = id;
@@ -57,8 +58,9 @@ const dltBlog = (id) => {
             text: 'Your Blog has deleted',
 
         })
+        console.log("yahan tk cahl raha")
+        window.location.reload()
     })
-    window.location.reload()
 };
 
 window.dltBlog = dltBlog;
@@ -161,7 +163,7 @@ const getBlogs = async (user) => {
                      </div>
                  </div>
                  <p class="card-text mt-3">${doc.data().description}</p>
-                 <a href="javascript:void(0);" onclick="dltBlog('${doc.id}')" id='${doc.id}' class="card-link">Delete</a>
+                 <a href="javascript:void(0);" onclick="dltBlog('${doc.id}')" class="card-link">Delete</a>
                  <a href="javascript:void(0);" onclick="updateBlog('${doc.id}')" class="card-link">Edit</a>
              </div>
          </div>`
@@ -290,15 +292,13 @@ onAuthStateChanged(auth, (user) => {
 
     } else {
         if (location.pathname === "/index.html") {
-
             getAllBlogs()
         }
         else if (location.pathname === "/pages/user.html") {
-
             getSpUserBlog()
         }
         if (location.pathname !== "/pages/login.html" && location.pathname !== "/pages/signup.html" && location.pathname !== "/index.html" && location.pathname !== "/pages/user.html") {
-            location.href = "/index.html"
+            location.href = "index.html"
         }
 
     }
