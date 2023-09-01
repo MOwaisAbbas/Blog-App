@@ -1,13 +1,67 @@
 import {
     createUserWithEmailAndPassword, auth, db, doc, getDoc, setDoc, signInWithEmailAndPassword, onAuthStateChanged, signOut, ref,
-    uploadBytesResumable, getDownloadURL, storage, updateDoc, updatePassword, collection, addDoc, serverTimestamp, query, where, getDocs
+    uploadBytesResumable, getDownloadURL, storage, updateDoc, updatePassword, collection, addDoc, serverTimestamp, query, where, getDocs, deleteDoc
 } from './firebase.js'
 
 
 const loader = document.getElementById("loader-div");
 const inputs = document.querySelectorAll("input");
+// ======================================================================= /
+// =========================== Update Blog =============================== /
+// ======================================================================= /
+let editBlogID;
+const updateBlog = async (id) => {
+    loader.style.display = "grid"
+
+    console.log(id)
+    editBlogID = id;
+    let titleInput = document.getElementById("titleInput");
+    let desInput = document.getElementById("desInput");
+    const publishBlog = document.getElementById("publishBlog");
+
+    const docRef = doc(db, "blogs", id);
+    const docSnap = await getDoc(docRef);
+    titleInput.value = docSnap.data().title;
+    desInput.value = docSnap.data().description;
+    publishBlog.innerHTML = "Update BLog"
+    loader.style.display = "none"
 
 
+
+
+
+    console.log(docSnap.data())
+}
+window.updateBlog = updateBlog;
+
+
+
+
+// ======================================================================= /
+// =========================== Delete Blog =============================== /
+// ======================================================================= /
+const dltBlog = (id) => {
+    console.log("is", id)
+    Swal.fire(
+        'Delete?',
+        'You want to delete this blog?',
+        'question'
+    )
+    const swal2confirm = document.getElementsByClassName("swal2-confirm")[0]
+    swal2confirm.addEventListener("click", async () => {
+        console.log("yahan bhi chal raha")
+        await deleteDoc(doc(db, "blogs", id));
+        Swal.fire({
+            icon: 'success',
+            title: 'Deleted',
+            text: 'Your Blog has deleted',
+
+        })
+    })
+    window.location.reload()
+};
+
+window.dltBlog = dltBlog;
 // ======================================================================= /
 // ====================== Get Specific User Blogs ======================== /
 // ======================================================================= /
@@ -25,7 +79,7 @@ const getSpUserBlog = async () => {
         allBlogsSpcUser.innerHTML += `<div class="card col-12 ps-2 mb-4">
         <div class="card-body">
         <div class="d-flex ">
-        <img id="blogImage" src="${doc.data().userInfo.Image}" alt="User Profile">
+        <img id="blogImage" src="${doc.data().userInfo.Image ? doc.data().userInfo.Image : "../images/profile.png"}" alt="User Profile">
         <div class="ms-3 d-flex flex-column justify-content-center">
         <h5 class="card-title fs-4 col-8">${doc.data().title}</h5>
         <div class="d-flex align-items-center">
@@ -62,7 +116,7 @@ const getAllBlogs = async () => {
         allBlogsHere.innerHTML += `<div class="card col-12 ps-2 mb-4">
         <div class="card-body">
             <div class="d-flex ">
-                <img id="blogImage" src="${doc.data().userInfo.Image} " alt="User Profile">
+                <img id="blogImage" src="${doc.data().userInfo.Image ? doc.data().userInfo.Image : "images/profile.png"} " alt="User Profile">
                 <div class="ms-3 d-flex flex-column justify-content-center">
                     <h5 class="card-title fs-4 col-8">${doc.data().title}</h5>
                     <div class="d-flex align-items-center">
@@ -83,8 +137,6 @@ const getAllBlogs = async () => {
 
 
 
-
-
 // ======================================================================= /
 // ========================== Get User Blogs ============================= /
 // ======================================================================= /
@@ -100,7 +152,7 @@ const getBlogs = async (user) => {
         blogHere.innerHTML += ` <div class="card col-12 ps-2 mb-4">
              <div class="card-body">
                  <div class="d-flex ">
-                     <img id="blogImage" src="${doc.data().userInfo.Image}" alt="User Profile">
+                     <img id="blogImage" src="${doc.data().userInfo.Image ? doc.data().userInfo.Image : "../images/profile.png"}" alt="User Profile">
                      <div class="ms-3 d-flex flex-column justify-content-center">
                          <h5 class="card-title fs-4 col-8 col-sm-10">${doc.data().title}</h5>
                          <div class="d-flex align-items-center">
@@ -109,8 +161,8 @@ const getBlogs = async (user) => {
                      </div>
                  </div>
                  <p class="card-text mt-3">${doc.data().description}</p>
-                 <a href="" id='${doc.id}' class="card-link">Delete</a>
-                 <a href="" class="card-link">Edit</a>
+                 <a href="javascript:void(0);" onclick="dltBlog('${doc.id}')" id='${doc.id}' class="card-link">Delete</a>
+                 <a href="javascript:void(0);" onclick="updateBlog('${doc.id}')" class="card-link">Edit</a>
              </div>
          </div>`
     });
@@ -121,15 +173,20 @@ const getBlogs = async (user) => {
 // ======================================================================= /
 // ============================== Get Data =============================== /
 // ======================================================================= /
+
 const getData = async (user) => {
-    const docRef = doc(db, "user", user.uid);
+    const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
         let profileImg = document.getElementById("profileImg");
         if (location.pathname === "/pages/profile.html") {
+            if (docSnap.data().Image) {
+
+                profileImg.src = docSnap.data().Image;
+
+            }
             inputs[1].value = docSnap.data().FirstName;
             inputs[2].value = docSnap.data().Password;
-            profileImg.src = docSnap.data().Image;
         }
         if (location.pathname === "/pages/home.html") {
             let [a, b] = document.getElementsByClassName('dashboardUserName')
@@ -139,11 +196,18 @@ const getData = async (user) => {
     } else {
         console.log("No such document!");
     }
-    if (location.pathname === "/index.html" || location.pathname === "/pages/user.html") {
+    if (location.pathname === "/index.html") {
         let changeHref = document.querySelectorAll('.changeHref');
         changeHref.forEach((value, index) => {
             value.innerHTML = "Dashboard"
             value.href = "pages/home.html"
+        })
+    }
+    if (location.pathname === "/pages/user.html") {
+        let changeHref = document.querySelectorAll('.changeHref');
+        changeHref.forEach((value, index) => {
+            value.innerHTML = "Dashboard"
+            value.href = "/pages/home.html"
         })
     }
 }
@@ -152,8 +216,11 @@ const getData = async (user) => {
 // ======================================================================= /
 // ==========================Signup Users================================= /
 // ======================================================================= /
+let flag = true;
+
 const signupBtn = document.getElementById("signupBtn");
 signupBtn && signupBtn.addEventListener('click', () => {
+    flag = false;
     if (inputs[3].value === inputs[4].value) {
 
         loader.style.display = "grid"
@@ -163,7 +230,7 @@ signupBtn && signupBtn.addEventListener('click', () => {
 
                     const user = userCredential.user;
                     console.log(":user===>", user)
-                    await setDoc(doc(db, "user", user.uid), {
+                    await setDoc(doc(db, "users", user.uid), {
                         FirstName: inputs[0].value,
                         LastName: inputs[1].value,
                         Email: inputs[2].value,
@@ -171,6 +238,7 @@ signupBtn && signupBtn.addEventListener('click', () => {
                         ConfPassword: inputs[4].value
                     });
                     loader.style.display = "none"
+                    flag = true;
                     location.href = "../index.html"
                 } catch (error) {
                     console.log(error, "wwwwwerdjfkds")
@@ -203,11 +271,6 @@ signupBtn && signupBtn.addEventListener('click', () => {
 // ======================================================================= /
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        const uid = user.uid;
-
-        if (location.pathname !== "/pages/home.html" && location.pathname !== "/pages/user.html" && location.pathname !== "/index.html" && location.pathname !== "/pages/profile.html") {
-            location.href = "/pages/home.html"
-        }
         console.log(user)
         getData(user)
         if (location.pathname === "/pages/home.html") {
@@ -218,6 +281,11 @@ onAuthStateChanged(auth, (user) => {
         }
         else if (location.pathname === "/pages/user.html") {
             getSpUserBlog()
+        }
+        const uid = user.uid;
+
+        if (flag && location.pathname !== "/pages/home.html" && location.pathname !== "/pages/user.html" && location.pathname !== "/index.html" && location.pathname !== "/pages/profile.html") {
+            location.href = "/pages/home.html"
         }
 
     } else {
@@ -252,13 +320,13 @@ const uploadFile = (file) => {
         uploadTask.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                // console.log('Upload is ' + progress + '% done');
+                console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
                     case 'paused':
-                        // console.log('Upload is paused');
+                        console.log('Upload is paused');
                         break;
                     case 'running':
-                        // console.log('Upload is running');
+                        console.log('Upload is running');
                         break;
                 }
             },
@@ -268,7 +336,7 @@ const uploadFile = (file) => {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     resolve(downloadURL);
-                    // console.log(downloadURL)
+                    console.log(downloadURL)
                 });
             }
         );
@@ -280,18 +348,18 @@ const fileInput = document.querySelectorAll("input[type='file']")[0];
 fileInput && fileInput.addEventListener("change", () => {
     loader.style.display = "grid"
 
-    // console.log("working", fileInput.files[0])
+    console.log("working", fileInput.files[0])
 
     uploadFile(fileInput.files[0]).then(async (res) => {
 
         let profileImg = document.getElementById("profileImg");
         profileImg.src = res;
         srrc = res;
-        // console.log("imgurl", res)
+        console.log("imgurl", res)
         loader.style.display = "none"
 
     }).catch((rej) => {
-        // console.log("reject==>".rej)
+        console.log("reject==>".rej)
         loader.style.display = "none"
 
     })
@@ -345,7 +413,7 @@ updateBtn && updateBtn.addEventListener("click", async () => {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Some Errors'
+            text: error
         })
     });
 
@@ -353,14 +421,17 @@ updateBtn && updateBtn.addEventListener("click", async () => {
     //===============
     let obj = {
         FirstName: inputs[1].value,
-        Password: inputs[3].value
+    }
+    if (inputs[3].value && inputs[4].value) {
+        obj.ConfPassword = inputs[4].value
+        obj.Password = inputs[3].value
     }
     if (srrc) {
 
         obj.Image = srrc
     }
-    const washingtonRef = doc(db, "user", user.uid);
-    await updateDoc(washingtonRef,
+    const updateRef = doc(db, "users", user.uid);
+    await updateDoc(updateRef,
         obj
     );
 
@@ -433,25 +504,62 @@ logoutUser && logoutUser.forEach((v, i) => {
 
 const publishBlog = document.getElementById("publishBlog");
 publishBlog && publishBlog.addEventListener("click", async () => {
-    loader.style.display = "grid"
-
-    const user = auth.currentUser;
-    const userRef = doc(db, "user", user.uid);
-    const docSnap = await getDoc(userRef);
 
     let titleInput = document.getElementById("titleInput");
     let desInput = document.getElementById("desInput");
-    const docRef = await addDoc(collection(db, "blogs"), {
-        title: titleInput.value,
-        description: desInput.value,
-        time: serverTimestamp(),
-        uid: user.uid,
-        userInfo: docSnap.data()
-    });
-    loader.style.display = "none"
-    titleInput.value = ""
-    desInput.value = ""
-    window.location.reload()
+    if (publishBlog.innerHTML === "Publish Blog") {
+
+        if (titleInput.value && desInput.value) {
+
+            loader.style.display = "grid"
+
+            const user = auth.currentUser;
+            const userRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(userRef);
+
+            const docRef = await addDoc(collection(db, "blogs"), {
+                title: titleInput.value,
+                description: desInput.value,
+                time: serverTimestamp(),
+                uid: user.uid,
+                userInfo: docSnap.data()
+            });
+            loader.style.display = "none"
+            titleInput.value = ""
+            desInput.value = ""
+            window.location.reload()
+        }
+        else (
+            Swal.fire({
+                icon: 'error',
+                title: 'Warning',
+                text: 'Please fill both fields!'
+            })
+        )
+    } else {
+        if (titleInput.value && desInput.value) {
+            loader.style.display = "grid"
+            const user = auth.currentUser;
+            const userRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(userRef);
+
+
+            const updateRef = doc(db, "blogs", editBlogID);
+            await updateDoc(updateRef, {
+                title: titleInput.value,
+                description: desInput.value,
+                time: serverTimestamp(),
+                uid: user.uid,
+                userInfo: docSnap.data()
+            });
+            loader.style.display = "none"
+            titleInput.value = ""
+            desInput.value = ""
+            publishBlog.innerHTML = "Publish Blog";
+            window.location.reload()
+            console.log("update ho gaya", editBlogID)
+        }
+    }
 });
 
 

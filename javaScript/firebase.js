@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updatePassword } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc,collection, addDoc, serverTimestamp , query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc,collection, addDoc, serverTimestamp , query, where, getDocs, deleteDoc  } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
 // import { getDatabase, ref, set } from"https://www.gstatic.com/firebasejs/10.3.0/firebase-database.js";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-storage.js";
 
@@ -22,5 +22,5 @@ const storage = getStorage(app);
 
 export {
   createUserWithEmailAndPassword, auth, db, doc, getDoc, setDoc, signInWithEmailAndPassword, onAuthStateChanged, signOut, ref,
-  uploadBytesResumable, getDownloadURL, storage, updateDoc, updatePassword,collection, addDoc, serverTimestamp, query, where, getDocs
+  uploadBytesResumable, getDownloadURL, storage, updateDoc, updatePassword,collection, addDoc, serverTimestamp, query, where, getDocs, deleteDoc 
 }
